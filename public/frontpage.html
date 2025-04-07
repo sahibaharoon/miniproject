@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathGPT - Your AI Math Assistant</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Additional styles for landing page */
+        .landing-container {
+            max-width: 800px;
+            padding: 40px 20px;
+            text-align: center;
+            background-color: var(--background-color);
+        }
+        
+        .landing-title {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .landing-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .feature-card {
+            background: var(--card-background);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            border: 1px solid var(--border-color);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+            border-color: var(--primary-color);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .feature-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        
+        .feature-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        
+        .get-started-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 2rem;
+        }
+        
+        .get-started-btn:hover {
+            background-color: #3367d6;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(66, 133, 244, 0.2);
+        }
+
+        /* Theme toggle styles */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--card-background);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-color);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--step-highlight);
+            transform: translateY(-1px);
+        }
+
+        body.dark-mode .theme-toggle {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .landing-title {
+                font-size: 2.2rem;
+            }
+
+            .theme-toggle {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* How to Use section styles */
+        .how-to-use {
+            padding: 60px 20px;
+            background-color: var(--light-gray);
+            margin-top: 60px;
+        }
+
+        .how-to-use h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+        }
+
+        .steps-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .step-card {
+            background: var(--card-background);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .step-image {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-number {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .step-title {
+            font-size: 1.4rem;
+            color: var(--text-color);
+            margin-bottom: 10px;
+        }
+
+        .step-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Update footer styles */
+        .footer {
+            padding: 30px 20px;
+            background-color: var(--light-gray);
+            text-align: center;
+            margin-top: 60px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer p {
+            margin: 5px 0;
+            color: var(--text-secondary);
+        }
+
+        .footer .developers {
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer .dev-line {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .footer .copyright {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .footer {
+                padding: 20px;
+            }
+            
+            .footer .developers {
+                font-size: 0.9rem;
+                line-height: 1.6;
+            }
+
+            .footer .dev-line {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme mode">
+        Light Mode
+    </button>
+
+    <div class="container landing-container">
+        <h1 class="landing-title">MathGPT</h1>
+        <p class="landing-subtitle">Your personal math solver</p>
+        
+        <p>Save time. Use MathGPT as your math tutor.</p>
+        <p>Turn hours of frustration into minutes with MathGPT.</p>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🧮</div>
+                <h3 class="feature-title">Trigonometry</h3>
+                <p class="feature-desc">Solve angles, lengths, and functions efficiently.</p>
+            </div>
+        
+            <div class="feature-card">
+                <div class="feature-icon">≠</div>
+                <h3 class="feature-title">Logarithmic Expression</h3>
+                <p class="feature-desc">Simplify, solve, and analyze exponential relationships easily.</p>
+            </div>
+        
+            <div class="feature-card">
+                <div class="feature-icon">➗</div>
+                <h3 class="feature-title">Basic Math</h3>
+                <p class="feature-desc">Perform addition, subtraction, multiplication, and division with ease.</p>
+            </div>
+        
+            <div class="feature-card">
+                <div class="feature-icon">⇆</div>
+                <h3 class="feature-title">Simplifying</h3>
+                <p class="feature-desc">Perform the proper order of operations.</p>
+            </div>
+        </div>
+
+        <!-- How to Use Section -->
+        <section class="how-to-use">
+            <h2>How to Use MathGPT </h2>
+            <div class="steps-container">
+                <div class="step-card">
+                    <img src="/images/step1.svg" alt="Enter problem" class="step-image">
+                    <div class="step-content">
+                        <div class="step-number">Step 1</div>
+                        <h3 class="step-title">Enter Your Problem</h3>
+                        <p class="step-description">Type your math problem or upload images, photos, or scanned math worksheets.</p>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <img src="/images/step2.svg" alt="Click solve" class="step-image">
+                    <div class="step-content">
+                        <div class="step-number">Step 2</div>
+                        <h3 class="step-title">Click Solve</h3>
+                        <p class="step-description">Hit the "Solve" button and wait for a moment while we process your request.</p>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <img src="/images/step3.svg" alt="Get solution" class="step-image">
+                    <div class="step-content">
+                        <div class="step-number">Step 3</div>
+                        <h3 class="step-title">Get Answers & Explanations</h3>
+                        <p class="step-description">MathGPT will provide answers to your math problems and offer explanations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Replace authors section with footer -->
+        <footer class="footer">
+            <div class="developers">
+                <div class="dev-line">
+                    <span>MDL22CS010 Adithya K Jayan</span>
+                    <span>MDL22CS027 Alex Varghese</span>
+                </div>
+                <div class="dev-line">
+                    <span>MDL22CS044 Anna Jiju</span>
+                    <span>MDL22CS166 Sahiba Haroon</span>
+                </div>
+            </div>
+            <p class="copyright">&copy; 2025 MathGPT Project. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            themeToggle.textContent = 'Dark Mode';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const isDarkMode = body.classList.contains('dark-mode');
+            themeToggle.textContent = isDarkMode ? 'Dark Mode' : 'Light Mode';
+            localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+        });
+
+        // Redirect to solver page on feature card click
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('click', () => {
+                window.location.href = '/solver';
+            });
+        });
+    </script>
+</body>
+</html>

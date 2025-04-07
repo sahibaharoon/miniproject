@@ -1,0 +1,402 @@
+:root {
+    --primary-color: #4285f4;
+    --secondary-color: #34a853;
+    --error-color: #ea4335;
+    --warning-color: #fbbc05;
+    --text-color: #202124;
+    --text-secondary: #5f6368;
+    --border-color: #dadce0;
+    --light-gray: #f8f9fa;
+    --step-highlight: #e8f0fe;
+    --background-color: #ffffff;
+    --card-background: #ffffff;
+}
+
+/* Dark mode variables */
+body.dark-mode {
+    --primary-color: #8ab4f8;
+    --secondary-color: #81c995;
+    --error-color: #f28b82;
+    --warning-color: #fdd663;
+    --text-color: #e8eaed;
+    --text-secondary: #9aa0a6;
+    --border-color: #3c4043;
+    --light-gray: #202124;
+    --step-highlight: #303134;
+    --background-color: #202124;
+    --card-background: #303134;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.container {
+    width: 100%;
+    max-width: 700px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+.input-area {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.upload-box {
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    background-color: var(--card-background);
+}
+
+.upload-box:hover {
+    border-color: var(--primary-color);
+    background-color: var(--step-highlight);
+}
+
+.upload-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.upload-icon {
+    font-size: 2.2rem;
+    color: var(--text-secondary);
+}
+
+#text-input {
+    width: 100%;
+    min-height: 120px;
+    padding: 1.2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    resize: vertical;
+    font-size: 1rem;
+    line-height: 1.6;
+    transition: all 0.3s;
+    background-color: var(--card-background);
+    color: var(--text-color);
+}
+
+#text-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
+}
+
+.or-divider {
+    color: var(--text-secondary);
+    position: relative;
+    margin: 0.5rem 0;
+}
+
+.or-divider::before,
+.or-divider::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 45%;
+    height: 1px;
+    background-color: var(--border-color);
+}
+
+.or-divider::before {
+    left: 0;
+}
+
+.or-divider::after {
+    right: 0;
+}
+
+#solve-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.9rem 1.8rem;
+    border-radius: 6px;
+    font-size: 1.05rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    align-self: center;
+    width: auto;
+    min-width: 150px;
+}
+
+#solve-btn:hover {
+    background-color: #3367d6;
+    transform: translateY(-1px);
+}
+
+#solve-btn:disabled {
+    background-color: var(--border-color);
+    cursor: not-allowed;
+    transform: none;
+}
+
+.results {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border-radius: 12px;
+    background-color: var(--light-gray);
+    text-align: left;
+    animation: fadeIn 0.4s ease-out;
+    color: var(--text-color);
+}
+
+.problem-type {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.8rem;
+    text-transform: capitalize;
+}
+
+.problem {
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.solution {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--secondary-color);
+    margin: 1rem 0;
+    padding: 0.8rem;
+    background-color: var(--card-background);
+    border-radius: 8px;
+    border-left: 4px solid var(--secondary-color);
+}
+
+.steps-title {
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 1.5rem 0 1rem;
+    font-size: 1.1rem;
+}
+
+.steps-container {
+    border-left: 3px solid var(--primary-color);
+    padding-left: 1rem;
+    margin-top: 0.5rem;
+}
+
+.step {
+    margin-bottom: 1.2rem;
+    padding: 0.8rem;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+.step:hover {
+    background-color: var(--step-highlight);
+}
+
+.step-action {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+}
+
+.step-math {
+    font-family: 'Courier New', monospace;
+    background: var(--card-background);
+    padding: 0.6rem 0.8rem;
+    border-radius: 6px;
+    margin-top: 0.4rem;
+    border: 1px solid var(--border-color);
+    overflow-x: auto;
+    white-space: pre-wrap;
+    color: var(--text-color);
+}
+
+.error {
+    color: var(--error-color);
+    font-weight: 500;
+    margin: 1rem 0;
+    padding: 0.8rem;
+    background-color: var(--step-highlight);
+    border-radius: 8px;
+    border-left: 4px solid var(--error-color);
+}
+
+.suggestion {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    font-style: italic;
+}
+
+.image-preview {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid transparent;
+    border-radius: 50%;
+    border-top: 3px solid #fff;
+    border-right: 3px solid #fff;
+    animation: spin 1s cubic-bezier(0.4, 0, 0.2, 1) infinite, pulse 1.5s ease-in-out infinite;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.6; }
+}
+
+.math-expression {
+    font-family: 'Times New Roman', serif;
+    font-style: italic;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    #solve-btn {
+        width: 100%;
+        padding: 0.8rem;
+    }
+
+    .results {
+        padding: 1rem;
+    }
+
+    .steps-container {
+        padding-left: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .upload-box {
+        padding: 1.5rem;
+    }
+
+    #text-input {
+        min-height: 100px;
+        padding: 1rem;
+    }
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: #121212; /* Dark background */
+  color: #ffffff; /* White text */
+}
+
+body.dark-mode h1,
+body.dark-mode h3,
+body.dark-mode .landing-title,
+body.dark-mode .landing-subtitle,
+body.dark-mode .subtitle {
+  color: #ffffff; /* White headings and subtitles */
+}
+
+/* Containers */
+body.dark-mode .container,
+body.dark-mode .landing-container {
+  background-color: #1e1e1e; /* Dark container background */
+}
+
+/* Feature Cards */
+body.dark-mode .feature-card {
+  background-color: #2e2e2e; /* Darker card background */
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+  color: #ffffff; /* Ensure text inside is white */
+}
+
+/* Upload Box and Text Input */
+body.dark-mode .upload-box {
+  border-color: #666666;
+  background-color: #2e2e2e;
+}
+body.dark-mode #text-input {
+  background-color: #2e2e2e;
+  border-color: #666666;
+  color: #ffffff;
+}
+
+/* Results Display */
+body.dark-mode .results {
+  background-color: #2e2e2e;
+  border-color: #666666;
+  color: #ffffff;
+}
+
+/* Toggle switch slider (if used on frontpage) remains as needed */
+body.dark-mode .slider {
+  background-color: #5f6368;
+}

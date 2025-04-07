@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Input box -->
+    <rect x="40" y="60" width="120" height="80" rx="8" fill="#F8F9FA" stroke="#4285F4" stroke-width="2"/>
+    
+    <!-- Text cursor -->
+    <rect x="55" y="80" width="2" height="20" fill="#4285F4">
+        <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
+    </rect>
+    
+    <!-- Math symbols -->
+    <text x="70" y="95" font-family="Arial" font-size="16" fill="#5F6368">x² + 2x + 1</text>
+    
+    <!-- Upload icon -->
+    <path d="M140 90 L140 110 L160 100 Z" fill="#34A853"/>
+</svg> 

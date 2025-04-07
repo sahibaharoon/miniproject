@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MathGPT - Your Personal Math Solver</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* Theme toggle styles */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--card-background);
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      padding: 8px 16px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-color);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .theme-toggle:hover {
+      background-color: var(--step-highlight);
+      transform: translateY(-1px);
+    }
+
+    body.dark-mode .theme-toggle {
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    @media (max-width: 768px) {
+      .theme-toggle {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme mode">
+    Light Mode
+  </button>
+
+  <div class="container">
+    <h1>MathGPT</h1>
+    <p class="subtitle">Your personal math solver</p>
+
+    <div class="input-area">
+      <div class="upload-box" id="upload-box">
+        <input type="file" id="file-input" accept="image/*" style="display: none;">
+        <div class="upload-content">
+          <div class="upload-icon">📁</div>
+          <p>Drag & drop or click to upload a math problem</p>
+        </div>
+      </div>
+
+      <div class="or-divider">OR</div>
+
+      <textarea id="text-input" placeholder="Type your math problem here"></textarea>
+
+      <button id="solve-btn">Solve</button>
+    </div>
+
+    <div id="progress-bar" class="progress-bar" style="display: none;"></div>
+    <div id="results" class="results"></div>
+  </div>
+
+  <script>
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      body.classList.add('dark-mode');
+      themeToggle.textContent = 'Dark Mode';
+    }
+
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      const isDarkMode = body.classList.contains('dark-mode');
+      themeToggle.textContent = isDarkMode ? 'Dark Mode' : 'Light Mode';
+      localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+    });
+  </script>
+  <script src="app.js"></script>
+</body>
+</html>

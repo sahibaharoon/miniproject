@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Solution card -->
+    <rect x="30" y="40" width="140" height="120" rx="8" fill="#F8F9FA" stroke="#34A853" stroke-width="2"/>
+    
+    <!-- Check mark -->
+    <circle cx="50" cy="70" r="15" fill="#34A853"/>
+    <path d="M45 70 L55 80 L65 60" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Solution text lines -->
+    <rect x="80" y="65" width="70" height="3" rx="1.5" fill="#5F6368"/>
+    <rect x="80" y="75" width="50" height="3" rx="1.5" fill="#5F6368"/>
+    
+    <!-- Steps -->
+    <rect x="45" y="100" width="110" height="2" rx="1" fill="#DADCE0"/>
+    <rect x="45" y="115" width="90" height="2" rx="1" fill="#DADCE0"/>
+    <rect x="45" y="130" width="70" height="2" rx="1" fill="#DADCE0"/>
+</svg> 
