@@ -1,4 +1,5 @@
 require('dotenv').config();
+const fs = require('fs');
 const express = require('express');
 const multer = require('multer');
 const { ImageAnnotatorClient } = require('@google-cloud/vision');
@@ -13,9 +14,22 @@ require('nerdamer/Solve');
 const app = express();
 const upload = multer({ storage: multer.memoryStorage() });
 
-const visionClient = new ImageAnnotatorClient({
-  keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS
-});
+let visionClient;
+
+if (process.env.GOOGLE_APPLICATION_CREDENTIALS_BASE64) {
+  const decodedKey = Buffer.from(process.env.GOOGLE_APPLICATION_CREDENTIALS_BASE64, 'base64').toString('utf-8');
+  const keyPath = './service-account.json';
+  const fs = require('fs');
+  fs.writeFileSync(keyPath, decodedKey);
+
+  visionClient = new ImageAnnotatorClient({
+    keyFilename: keyPath
+  });
+} else {
+  console.error("GOOGLE_APPLICATION_CREDENTIALS_BASE64 env variable not found.");
+  process.exit(1);
+}
+
 
 app.use(cors());
 app.use(express.json());
