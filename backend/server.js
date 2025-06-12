@@ -19,17 +19,21 @@ const visionClient = new ImageAnnotatorClient({
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '../public'), {
-  index: 'frontpage.html'
-}));
+// Serve static files from the frontend folder
+app.use(express.static(path.join(__dirname, '../frontend')));
 
-// Route handlers
+// Serve frontpage.html at "/"
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/frontpage.html'));
+  res.sendFile(path.join(__dirname, '../frontend/frontpage.html'));
 });
 
+// Serve index.html (the math solver UI) at "/solver"
 app.get('/solver', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/index.html'));
+  res.sendFile(path.join(__dirname, '../frontend/index.html'));
+});
+
+app.get('/', (req, res) => {
+  res.json({ message: 'MathGPT API is running!' });
 });
 
 // Enhanced Math Processing Functions
