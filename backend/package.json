@@ -11,7 +11,7 @@
   "author": "",
   "livisioncense": "ISC",
   "dependencies": {
-    "@google-cloud/": "^5.1.0",
+    "@google-cloud/vision": "^5.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^5.1.0",
